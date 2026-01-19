@@ -1,0 +1,2 @@
+This is a placeholder for the deployed application link.
+Please replace this with your actual deployed URL after deployment to GitHub Pages or another hosting service.
