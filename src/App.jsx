@@ -33,9 +33,11 @@ function App() {
   }, []);
 
   // Filter countries by search term (case-insensitive)
-  const filteredCountries = countries.filter((country) =>
-    country.name && country.name.toLowerCase().includes(search.trim().toLowerCase())
-  );
+  const filteredCountries = search.trim() === ""
+    ? countries
+    : countries.filter((country) =>
+        country.common && country.common.toLowerCase().includes(search.trim().toLowerCase())
+      );
 
   return (
     <div className="app">
@@ -51,15 +53,15 @@ function App() {
       {!loading && !error && (
         <div className="countries-grid">
           {filteredCountries.length > 0 &&
-            filteredCountries.map((country) => (
-              <div key={country.countryCode} className="countryCard">
+            filteredCountries.map((country, idx) => (
+              <div key={country.common + idx} className="countryCard">
                 <img
-                  src={country.flag}
-                  alt={`Flag of ${country.name}`}
+                  src={country.png}
+                  alt={`Flag of ${country.common}`}
                   className="flag"
                   style={{ width: "80px", height: "50px", objectFit: "cover", border: "1px solid #eee", borderRadius: "4px" }}
                 />
-                <p className="country-name" style={{ marginTop: "8px", fontWeight: 500 }}>{country.name}</p>
+                <p className="country-name" style={{ marginTop: "8px", fontWeight: 500 }}>{country.common}</p>
               </div>
             ))}
         </div>
