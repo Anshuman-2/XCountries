@@ -34,7 +34,7 @@ function App() {
 
   // Filter countries by search term (case-insensitive)
   const filteredCountries = countries.filter((country) =>
-    country.name.toLowerCase().includes(search.trim().toLowerCase())
+    country.name && country.name.toLowerCase().includes(search.trim().toLowerCase())
   );
 
   return (
